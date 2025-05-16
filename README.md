@@ -14,33 +14,67 @@ This server exposes a single tool called `terminal` that allows executing termin
 - MCP Python SDK
 
 ### Setup
-
-1. Install the MCP Python SDK and CLI:
-
+1. Create virtual environment
+ ```bash
+uv venv
+```
+2. Activate it:
 ```bash
-pip install "mcp[cli]"
+.venv\Scripts\activate
+```
+3. Install the MCP Python SDK and CLI:
+```bash
+uv add "mcp[cli]"
+```
+4. Clone this repository or download the server file.
+5. To build docker image:
+```bash
+docker build -t shellserver-app .
+```
+6. To run docker image: 
+```bash
+docker run -it --rm shellserver-app
 ```
 
-2. Clone this repository or download the server file.
-
-## Usage
-
-### Testing the Server
-
-You can test the server using the MCP development tool:
-
+### Useful commands:
+- list docker image: 
 ```bash
-mcp dev shellserver/server.py
+docker image ls
 ```
-
-This will start the server and open the MCP Inspector where you can test the terminal tool.
+- list docker running: 
+```bash
+docker ps
+```
+- To kill docker:
+```bash
+docker kill docker_id
+```
+- To interact with docker container ():
+```bash
+docker exec -it docker_id sh
+```
 
 ### Installing in Claude Desktop
 
-To use the server with Claude Desktop:
+To use the server with Claude Desktop upadte the Claude config file:
 
 ```bash
-mcp install shellserver/server.py
+{
+  "mcpServers": {
+	"docker-shell": {
+		"command": "docker",
+		"args": [
+			"run",
+			"-i",
+			"--rm",
+			"--init",
+			"-e",
+			"DOCKER_CONTAINER=true",
+            "shellserver-app"	
+		]
+	}
+  }
+}
 ```
 
 This will register the server with Claude Desktop, allowing you to use the terminal tool directly in Claude.
@@ -53,26 +87,6 @@ This will register the server with Claude Desktop, allowing you to use the termi
 - Run potentially harmful commands
 
 Only use this server in trusted environments and be careful with the commands you approve for execution.
-
-## Tool Reference
-
-### terminal
-
-Executes a shell command and returns its output.
-
-**Parameters:**
-- `command` (string): The command to execute
-
-**Returns:**
-- String: The command output (stdout and stderr combined)
-
-**Example usage:**
-
-```
-terminal("ls -la")
-terminal("echo Hello World")
-terminal("pwd")
-```
 
 ## License
 
