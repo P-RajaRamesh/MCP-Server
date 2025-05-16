@@ -63,15 +63,7 @@ To use the server with Claude Desktop upadte the Claude config file:
   "mcpServers": {
 	"docker-shell": {
 		"command": "docker",
-		"args": [
-			"run",
-			"-i",
-			"--rm",
-			"--init",
-			"-e",
-			"DOCKER_CONTAINER=true",
-            "shellserver-app"	
-		]
+		"args": [ "run", "-i", "--rm", "--init", "-e", "DOCKER_CONTAINER=true", "shellserver-app" ]
 	}
   }
 }
