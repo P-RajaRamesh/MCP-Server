@@ -26,7 +26,10 @@ Activate the virtual environment:
 .venv\Scripts\activate
 ```
 
-Now, install dependencies:
+Now, initialize uv project and install dependencies:
+```
+uv init
+```
 ```
 uv add -r requirements.txt
 ```
