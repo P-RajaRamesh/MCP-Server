@@ -22,7 +22,10 @@ uv venv
 ```bash
 .venv\Scripts\activate
 ```
-3. Install the MCP Python SDK and CLI:
+3. Initialize uv project and install the MCP Python SDK and CLI:
+```
+uv init
+```
 ```bash
 uv add "mcp[cli]"
 ```
