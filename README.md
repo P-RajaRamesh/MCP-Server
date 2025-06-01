@@ -11,7 +11,7 @@ This project exposes the sentiment analysis tool from mcp_server.py and that too
 ## 🛠 Installation
 
 Ensure you have *uv* installed. If not, install it first:
-Make sure you install the pip in closed environment
+Make sure you install the python env in closed environment
 ```
 pip install uv
 ```
